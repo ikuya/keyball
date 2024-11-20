@@ -30,7 +30,7 @@ const uint8_t CPI_MAX        = pmw3360_MAXCPI + 1;
 const uint8_t SCROLL_DIV_MAX = 7;
 
 const uint16_t AML_TIMEOUT_MIN = 100;
-const uint16_t AML_TIMEOUT_MAX = 1000;
+const uint16_t AML_TIMEOUT_MAX = 10000; // 1000 -> 10000に増やした
 const uint16_t AML_TIMEOUT_QU  = 50;   // Quantization Unit
 
 static const char BL = '\xB0'; // Blank indicator character
@@ -411,7 +411,7 @@ void keyball_oled_render_ballinfo(void) {
     oled_write(format_4d(keyball_get_cpi()) + 1, false);
     oled_write_P(PSTR("00 "), false);
 
-    // indicate scroll snap mode: "VT" (vertical), "HO" (horizontal), and "SCR" (free)
+    // indicate scroll snap mode: "VT" (vertical), "HN" (horiozntal), and "SCR" (free)
 #if 1 && KEYBALL_SCROLLSNAP_ENABLE == 2
     switch (keyball_get_scrollsnap_mode()) {
         case KEYBALL_SCROLLSNAP_MODE_VERTICAL:
